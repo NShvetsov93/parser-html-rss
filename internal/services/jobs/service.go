@@ -17,12 +17,14 @@ import (
 
 const extRss string = ".rss"
 
+//Storage ...
 type Storage interface {
 	GetRequestData(ctx context.Context) ([]*db.RequestData, error)
 	InsertNews(ctx context.Context, news []*db.OneNewsForIns) error
 }
 
-func Run(storage Storage, ctx context.Context) error {
+//Run ...
+func Run(ctx context.Context, storage Storage) error {
 	for {
 		data, err := storage.GetRequestData(ctx)
 		// fmt.Printf("%v %T", data, data)

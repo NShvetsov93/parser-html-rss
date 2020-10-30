@@ -8,10 +8,11 @@ import (
 	"github.com/pkg/errors"
 )
 
+//News ...
 func (i *Implementation) News(ctx context.Context, req *desc.NewsRequest) (*desc.NewsResponse, error) {
 	news, err := i.api.GetNews(ctx, req.Filter)
 	if err != nil {
-		return nil, errors.Wrap(err, "couldn't get list of products")
+		return nil, errors.Wrap(err, "couldn't get list of news")
 	}
 	return convertToListResponse(news), nil
 }

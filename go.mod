@@ -5,12 +5,14 @@ go 1.15
 require (
 	github.com/antchfx/htmlquery v1.2.3
 	github.com/antchfx/xmlquery v1.3.3
+	github.com/gojuno/minimock/v3 v3.0.8
 	github.com/golang/protobuf v1.4.3
 	github.com/google/go-cmp v0.5.2 // indirect
 	github.com/jackc/pgx/v4 v4.9.0
 	github.com/joho/godotenv v1.3.0
 	github.com/lib/pq v1.8.0 // indirect
 	github.com/pkg/errors v0.9.1
+	github.com/stretchr/testify v1.5.1
 	golang.org/x/net v0.0.0-20201029055024-942e2f445f3c
 	golang.org/x/sys v0.0.0-20201029080932-201ba4db2418 // indirect
 	golang.org/x/text v0.3.4 // indirect

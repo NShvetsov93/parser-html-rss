@@ -10,6 +10,7 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
+//Connect
 func Connect() *pgxpool.Pool {
 	login, exists := os.LookupEnv("DB_USER")
 	if !exists {
@@ -39,6 +40,7 @@ func Connect() *pgxpool.Pool {
 	return conn
 }
 
+//Close connect
 func Close(conn *pgxpool.Pool) {
 	conn.Close()
 	// if error := conn.Close(context.Background()); error != nil {

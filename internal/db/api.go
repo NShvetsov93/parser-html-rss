@@ -8,20 +8,24 @@ import (
 	"github.com/pkg/errors"
 )
 
+//Storage ...
 type Storage struct {
 	db *pgxpool.Pool
 }
 
+//OneNews ...
 type OneNews struct {
 	Title string
 }
 
+//NewStorage ...
 func NewStorage(db *pgxpool.Pool) *Storage {
 	return &Storage{
 		db: db,
 	}
 }
 
+//InsertRule ...
 func (s Storage) InsertRule(ctx context.Context, site string, node string) error {
 	_, insErr := s.db.Query(ctx, "insert into sites (name) values ($1)", site)
 	if insErr != nil {
@@ -38,6 +42,7 @@ func (s Storage) InsertRule(ctx context.Context, site string, node string) error
 	return nil
 }
 
+//SelectNews ...
 func (s Storage) SelectNews(ctx context.Context, filter string) ([]*OneNews, error) {
 	var news []*OneNews
 	sel := "select n.title from news as n"
@@ -65,7 +70,7 @@ func getSiteIDByName(ctx context.Context, s Storage, name string) (int32, error)
 	var id int32
 	errS := s.db.QueryRow(ctx, "select id from sites where name=$1", name).Scan(&id)
 	if errS != nil {
-		return id, errors.Wrap(errS, "Что то пошло не так")
+		return id, errors.Wrap(errS, "Не найден идентификатор сайта")
 	}
 	return id, nil
 }
@@ -74,7 +79,7 @@ func getNodeIDByName(ctx context.Context, s Storage, name string) (int32, error)
 	var id int32
 	errN := s.db.QueryRow(ctx, "select id from nodes where value=$1", name).Scan(&id)
 	if errN != nil {
-		return id, errors.Wrap(errN, "Что то пошло не так")
+		return id, errors.Wrap(errN, "Не найден идентификатор правила")
 	}
 	return id, nil
 }

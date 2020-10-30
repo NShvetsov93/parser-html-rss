@@ -30,7 +30,7 @@ func main() {
 	storageJOB := storage.NewStorage(connJOB)
 	srv := apisrv.NewApi(service.NewService(storageJOB))
 
-	go jobs.Run(storageAPI, context.Background())
+	go jobs.Run(context.Background(), storageAPI)
 
 	s := grpc.NewServer()
 
