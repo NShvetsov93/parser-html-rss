@@ -1,0 +1,11 @@
+development:
+    dialect: postgres
+    datasource: host=127.0.0.1 dbname=dotTest user=dotUser password=dotTestPass sslmode=disable
+    dir: migrations
+    table: migrations
+
+production:
+    dialect: postgres
+    datasource: host=${DB_URL} dbname=${DB_NAME} user=${DB_USER} password=${DB_PASS} sslmode=disable
+    dir: migrations
+    table: migrations
