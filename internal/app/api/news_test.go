@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type testCaseRule struct {
+type testCaseNews struct {
 	name    string
 	want    *apipb.NewsResponse
 	wantErr bool
@@ -18,11 +18,11 @@ type testCaseRule struct {
 }
 
 func TestImplementation_News(t *testing.T) {
-	for _, test := range getTestCaseList() {
+	for _, test := range getTestCaseNews() {
 		t.Run(test.name, func(t *testing.T) {
 			i := createImplementation(t, test.err)
 
-			resp, err := i.News(context.Background(), getListRequest())
+			resp, err := i.News(context.Background(), getNewsRequest())
 
 			if test.wantErr {
 				require.Error(t, err)
@@ -42,12 +42,12 @@ func getNewsRequest() *apipb.NewsRequest {
 	}
 }
 
-func getTestCaseList() []testCaseList {
-	return []testCaseList{
+func getTestCaseNews() []testCaseNews {
+	return []testCaseNews{
 		{
 			name: "positive case",
 			want: &apipb.NewsResponse{
-				OneNews: []*apipb.NewsResponse_OneNews{
+				Onenews: []*apipb.NewsResponse_OneNews{
 					{
 						Title: "very good news",
 					},

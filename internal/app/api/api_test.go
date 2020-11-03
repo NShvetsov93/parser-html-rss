@@ -12,7 +12,7 @@ func createImplementation(t *testing.T, errIn error) *Implementation {
 	api.AddRuleMock.Set(func(ctx context.Context, site string, node string) (err error) {
 		return errIn
 	})
-	retList := []*database.OneNews{
+	retList := []*db.OneNews{
 		{
 			Title: "very good news",
 		},
